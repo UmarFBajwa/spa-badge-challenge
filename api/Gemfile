@@ -6,4 +6,5 @@ gem 'rack-cors'
 group :development, :test do
   gem 'pry-rails'
   gem 'byebug'
+  gem 'faker'
 end
