@@ -14,7 +14,6 @@
     <h1> SF Teachers </h1>
     <div id="placeholder"></div>
       <ul>
-        <li><a href="#">Walker</a></li>
         <li><a href="sample-page.html">Sample Page (to see what the badges view should look like)</a></li>
       </ul>
   </div>
@@ -22,11 +21,26 @@
 </html>
 
 <script id="teacher-template" type="text/x-handlebars-template">
-<div id='teacher-list'>
-  {{#each teachers}}
-  <ul>
-    <li>{{this.name}}</li>
-  </ul>
-  {{/each}}
-</div>
+  <div id='teacher-list'>
+    {{#each teachers}}
+    <ul>
+      <li>
+        <a href="http://spa-badge-api.herokuapp.com/teachers/{{this.id}}">{{this.name}}</a>
+      </li>
+    </ul>
+    {{/each}}
+  </div>
+</script>
+
+<script id="badge-template" type="text/x-handlebars-template">
+  <div id='badge'>
+    {{#each badges}}
+    <ul>
+      <li>
+        {{this.phrase}}
+        {{this.votes}}
+      </li>
+    </ul>
+    {{/each}}
+  </div>
 </script>

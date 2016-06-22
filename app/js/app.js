@@ -13,7 +13,29 @@ $.ready(function(){
     var compiledHtml = theTemplate(context);
 
     $.select("#placeholder").innerHTML = compiledHtml;
+
+    attachListener();
   })
 
+  var attachListener = function(){
+  $.on('#teacher-list', 'click', function(event) {
+    event.preventDefault();
+    var teacherLink = event.target.getAttribute('href');
+    var specificTeacher = $.request({
+      type: 'GET',
+      url: teacherLink
+    }).then(function(response) {
+      var theBadgeScript = $.select('#badge-template').innerHTML;
+      var teacherJSON = JSON.parse(response);
+      var theTemplate = Handlebars.compile(theBadgeScript)
+      var context = {
+        badges: teacherJSON.badges
+      }
+      var compiledHtml = theTemplate(context);
+
+      $.select('#placeholder').innerHTML = compiledHtml;
+    })
+  });
+  }
 
 })
