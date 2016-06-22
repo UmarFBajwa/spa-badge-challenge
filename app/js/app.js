@@ -29,10 +29,11 @@ $.ready(function(){
       var teacherJSON = JSON.parse(response);
       var theTemplate = Handlebars.compile(theBadgeScript)
       var context = {
-        badges: teacherJSON.badges
+        badges: teacherJSON.badges,
+        name: teacherJSON.name,
+        id: teacherJSON.id
       }
       var compiledHtml = theTemplate(context);
-
       $.select('#placeholder').innerHTML = compiledHtml;
     })
   });
