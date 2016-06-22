@@ -88,14 +88,21 @@ var AjaxWrapper = (function(){
 
   return {
     request: function(params){
+      var urlSelect = params.url;
+      var type = params.type;
+      var data = params.data
       return new Promise(function(resolve, reject){
         var ajax = new XMLHttpRequest();
-
-        ajax.open(params.type, params.url,true);
-        ajax.send();
+        if (type.toUpperCase() === 'GET') {
+          ajax.open(type, urlSelect,true);
+          ajax.send();} else if (type.toUpperCase() === 'POST') {
+          ajax.open(type, urlSelect)
+          ajax.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+          ajax.send(data);
+          }
         ajax.onload = function(e){
           if (ajax.readyState === 4) {
-            if (ajax.status === 200) {
+            if (ajax.status >= 200 && ajax.status < 400) {
               resolve(ajax.response);
             } else {reject(ajax.statusText);}
           };

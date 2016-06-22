@@ -62,13 +62,23 @@
     </div>
     {{/each}}
 
-      <div class="add-badge">
-        <h3> Add a Badge: </h3>
-        <form action="#">
-          <input type="hidden" name="user_id" value="5" />
-          <input type="text" name="content" />
-          <input type="image" src="img/add_button.png" alt="Add Slogan" />
-        </form>
-      </div>
+    <div id="add-badge">
+      <h3> Add a Badge: </h3>
+      <form id="badge-form" action="http://spa-badge-api.herokuapp.com/teachers/{{id}}/badges" method="POST">
+        <input type="hidden" name="votes" value="0" />
+        <input type="hidden" name="teacher_id" value="{{id}}" />
+        <input type="text" name="phrase" />
+        <input type="image" src="img/add_button.png" alt="Add Slogan" />
+      </form>
+    </div>
 
-    </script>
+
+    <div class="nav">
+      <span class="nav-link">
+        <a href="spa-badge.html"> HOME </a>
+      </span>
+    </div>
+
+</script>
+
+
